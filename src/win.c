@@ -1,17 +1,12 @@
-typedef struct MainWinArgs {
-    int width;
-    int height;
-} MainWinArgs;
 
-char *outputString;
 void *MainWin(void *vargp) {
     MainWinArgs args = *(MainWinArgs *)vargp;
-    NewXWindow(0, args.width, args.height, 0, 0, "Test", "Win", true);
-    int x=0;
-    outputString="Initialized";
+    
+    Screen *screen = getDisplayInfo(0);
+    wprintf(L"A %f Program initialized.\nScreen:  [ %d / %d ] \n", randfb(0, .025), screen->width, screen->height);
+
     while(1) {
-        text(0, 32, 32, outputString, 0xffffff);
-        usleep(6400);
+        usleep(16666.000);
     }
     return (NULL);
 }

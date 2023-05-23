@@ -19,40 +19,26 @@
 #include <sys/ioctl.h>
 #include <errno.h>
 
-#define max_particles 9000
-
+#include "definitions.h"
 #include "libs/libs.h"
 
-#define cpulen get_nprocs()
-bool threadfin_counter[96];
-
-bool all_threads_finished() {
-    bool tf=false;
-    int count=0;
-    for(int i=0;i<cpulen;i++) {
-        if(threadfin_counter[i]==true) {
-            count++;
-        }
-        if(count>=cpulen-1) {
-            tf=true;
-        }
-    }
-  
-    return tf;
-}
-
-bool flush_threads() {
-    for(int i=0;i<cpulen;i++) {
-        threadfin_counter[i]=false;
-    }
-}
-
-
+//stdio stuff
 typedef struct Terminal {
     unsigned short int width;
     unsigned short int height;
 } Terminal;
 Terminal terminal;
+
+//screen stuff
+Screen *getDisplayInfo(int index) {
+    Display *display;
+    Screen *screen;
+    display = XOpenDisplay((char *)0);
+    screen = ScreenOfDisplay(display, index);
+    return screen;
+}
+
+//init defaults
 void init_defaults() {
     time_t t;
     srand((unsigned) time(&t));
@@ -60,8 +46,9 @@ void init_defaults() {
     ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
     terminal.width = w.ws_col;
     terminal.height = w.ws_row;
-    setlocale(LC_ALL, "utf-8");
+    setlocale(LC_ALL, "");
 }
+
 #define initialize init_defaults();
 
 

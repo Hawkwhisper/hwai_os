@@ -2,7 +2,10 @@
     "files.associations": {
         "assert.h": "c",
         "stdlib.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "libs.h": "c",
+        "definitions.h": "c",
+        "limits": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

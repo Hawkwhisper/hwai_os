@@ -1,5 +1,4 @@
 void redraw(int index) {
-
     XFlush(displays[index]);
     XSetBackground(displays[index],gc[index],WindowColors[index][0]);
     XSetForeground(displays[index],gc[index],WindowColors[index][1]);
@@ -64,5 +63,5 @@ void rect(int index, int x, int y, int width, int height, unsigned long fill) {
 
 void text(int index, int x, int y, char *msg, unsigned long color) {
     setDrawColor(index, color, WindowColors[index][1]);
-    XDrawString(displays[index], xwindows[index], gc[index], x, 32, msg, strlen(msg));
+    XDrawString(displays[index], xwindows[index], gc[index], x, y, msg, strlen(msg));
 }
