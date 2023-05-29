@@ -5,7 +5,10 @@
         "main.h": "c",
         "libs.h": "c",
         "definitions.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "main.c": "cpp",
+        "resource.h": "c",
+        "win.c": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,3 +1,4 @@
+
 void redraw(int index) {
     XFlush(displays[index]);
     XSetBackground(displays[index],gc[index],WindowColors[index][0]);
@@ -31,14 +32,12 @@ void NewXWindow(unsigned short int index, int width, int height, int x, int y, c
 	XSelectInput(displays[index], xwindows[index], StructureNotifyMask|NoEventMask|ExposureMask|ButtonPressMask|KeyPressMask);
     gc[index]=XCreateGC(displays[index], xwindows[index], 0,0);        
     XMapRaised(displays[index], xwindows[index]);
-	if(x!=NULL && y!=NULL) {
-        XMoveWindow(displays[index], xwindows[index], x, y);
-        if(width!=NULL && height!=NULL) {
-            XResizeWindow(displays[index], xwindows[index], width, height);
-        }
-    } 
     XSetWindowBorder(displays[index], xwindows[index], 0xffaa99);
     setDrawColor(index, 0xffffff, 0x000000);
+
+    sleep(0);
+    XMoveWindow(displays[index], xwindows[index], x, y);
+    XResizeWindow(displays[index], xwindows[index], width, height);
     redraw(index);
 }
 
@@ -64,4 +63,8 @@ void rect(int index, int x, int y, int width, int height, unsigned long fill) {
 void text(int index, int x, int y, char *msg, unsigned long color) {
     setDrawColor(index, color, WindowColors[index][1]);
     XDrawString(displays[index], xwindows[index], gc[index], x, y, msg, strlen(msg));
+}
+
+void closeWin(int index) {
+    XCloseDisplay(displays[index]);
 }

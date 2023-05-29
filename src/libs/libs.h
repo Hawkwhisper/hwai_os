@@ -10,4 +10,6 @@
 
 #include "neural_classes/main.h"
 
+#include "cli/main.h"
+
 #endif

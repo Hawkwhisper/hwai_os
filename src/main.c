@@ -11,4 +11,5 @@ void main() {
     MainWinArgs mainwin_args = {_dp[1][0]+_dp[1][2]-640, _dp[1][3]-360, 640, 360}; //bottom right corner
     pthread_t mainwin = ThreadProcessor(&MainWin, &mainwin_args);
     pthread_join(mainwin, NULL);
+    system ("/bin/stty cooked");
 }
